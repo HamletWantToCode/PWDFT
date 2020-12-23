@@ -8,7 +8,7 @@ def hamilton_builder(k: float, vq: np.array, matrix_size: tuple):
     At each k point, we generate a single particle Hamiltonian according to:
     H(k)_{m,n} = \frac{(k+G)^2}{2}\delta_{m,n} + V(G_m-G_n)
     """
-    Hkq_cache = np.zeros(matrix_size)
+    Hkq_cache = np.zeros(matrix_size, dtype=vq.dtype)
 
     for i in range(1, len(vq)):
         np.fill_diagonal(Hkq_cache[i:, :-i], vq[i])
@@ -36,10 +36,10 @@ def get_kinetic_energy_density_at_k(Hkq: np.array, rho_kq: np.array):
 
 def get_electron_density_at_k(rho_kq: np.array):
     num_of_positive_G = rho_kq.shape[0]
-    density_kq_cache = np.zeros(num_of_positive_G)
+    density_kq_cache = np.zeros(num_of_positive_G, dtype=rho_kq.dtype)
 
     for i in range(num_of_positive_G):
-        density_kq_cache[i] = np.trace(rho_kq, k=-i))
+        density_kq_cache[i] = np.trace(rho_kq, k=-i)
     
     return density_kq_cache
 

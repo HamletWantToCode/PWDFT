@@ -6,4 +6,7 @@ def to_x(fG, Npoints):
 
 # when V(G) are real, will \rho(G) be real?
 def to_G(fx):
+    """
+    NOTE: fx is real
+    """
     return np.fft.rfft(fx) / len(fx)
