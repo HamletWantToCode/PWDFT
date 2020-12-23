@@ -11,7 +11,7 @@ def run_dft(kpoints: np.array,
     electron_density_per_cell = np.zeros(matrix_size[0])
 
     for k in kpoints:
-        Hkq = hamilton_builder(k, vq, matrix_size)
+        Hkq = hamilton_builder(k, matrix_size, vq)
         spectrum, density_matrix_kq = get_spectrum_and_density_matrix_at_k(Hkq, chem_potential)
         epsilon_k = get_kinetic_energy_density_at_k(Hkq, density_matrix_kq)
         density_kq = get_electron_density_at_k(density_matrix_kq)
