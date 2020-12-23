@@ -1,6 +1,8 @@
 import numpy as np 
 from .potential import random_periodic_potential
 
+__all__ = ["hamilton_builder", "get_spectrum_and_density_matrix_at_k", "get_kinetic_energy_density_at_k", "get_electron_density_at_k"]
+
 def hamilton_builder(k: float, vq: np.array, matrix_size: tuple):
     """
     At each k point, we generate a single particle Hamiltonian according to:
@@ -26,7 +28,7 @@ def get_spectrum_and_density_matrix_at_k(Hkq: np.array, chem_potential: float):
     spectrum_k, Uk = np.linalg.eigh(Hkq)
     # Fermi statistics
     occupation_num = sum(spectrum_k <= chem_potential)
-    rho_kq = Uk @ Uk.conj().T
+    rho_kq = Uk[:, :occupation_num] @ (Uk.conj().T)[:occupation_num, :]
     return spectrum_k, rho_kq
 
 def get_kinetic_energy_density_at_k(Hkq: np.array, rho_kq: np.array):
