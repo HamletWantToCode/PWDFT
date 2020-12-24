@@ -30,9 +30,8 @@ def random_periodic_potential(
     V0_range: tuple,
     mu_range: tuple,
     sigma_range: tuple,
-    seed):
+    rng):
 
-    rng = np.random.RandomState(seed)
     while True:
         V0 = rng.uniform(*V0_range, size=n_component)
         mu = rng.uniform(*mu_range, size=n_component)

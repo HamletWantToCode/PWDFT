@@ -1,0 +1,14 @@
+{
+    "potential": {
+        "n_components": 5,
+        "nG": 10,
+        "V0_range": [1.0, 10.0],
+        "mu_range": [0.3, 0.7],
+        "sigma_range": [0.01, 0.3]
+    },
+    "dft": {
+        "nkpts": 100,
+        "chem_potential": 20.0,
+        "matrix_size": [50, 50]
+    }
+}
